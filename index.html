@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search | Fluentix</title>
-    <link rel="icon" href="fluentix-white.png" type="image/png">
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden; /* Prevent scrollbars */
-        }
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            border: none; /* Optional: Remove the iframe border */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch External Data</title>
 </head>
 <body>
-    <iframe src="https://fluentixxx.tiiny.io/"></iframe>
+  <h1>External Data Display</h1>
+
+  <div id="content">
+    <p>Loading content...</p>
+  </div>
+
+  <script>
+    // Fetch content from an external website (ensure CORS allows it)
+    fetch('https://mmm.com/abc')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(data => {
+        // Display the fetched content inside a div
+        document.getElementById('content').innerHTML = data;
+      })
+      .catch(error => {
+        document.getElementById('content').innerHTML = 'Failed to load content.';
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  </script>
+
 </body>
 </html>
